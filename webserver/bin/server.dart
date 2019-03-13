@@ -20,7 +20,10 @@ Future main() async {
   // for (var i = 0; i < result.toList().length; i++) {
     
   // }
-  
+  Map res={
+    'Id':'123',
+    'IsLogin':true
+  };
   var server = await HttpServer.bind(
     InternetAddress.loopbackIPv4,
     5051,
@@ -31,7 +34,7 @@ Future main() async {
     if (request.method == 'GET') {
       request.response
         //..write(jsonEncode(result.toList()))
-        ..write("kha dai ca 123")
+        ..write(jsonEncode(res))
         ..close();
     }
   }
