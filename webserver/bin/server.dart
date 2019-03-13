@@ -9,14 +9,14 @@ import 'package:mysql1/mysql1.dart';
 
 Future main() async {
  var settings = new ConnectionSettings(
-  host: '207.148.71.41', 
+  host: 'localhost', 
   port: 3306,
   user: 'root',
   password: 'Khoikhats123',
   db: 'test'
 );
-var conn = await MySqlConnection.connect(settings);
-  var result = await conn.query('select * from SinhVien');
+//var conn = await MySqlConnection.connect(settings);
+  //var result = await conn.query('select * from SinhVien');
   // for (var i = 0; i < result.toList().length; i++) {
     
   // }
@@ -30,7 +30,8 @@ var conn = await MySqlConnection.connect(settings);
   await for (HttpRequest request in server) {
     if (request.method == 'GET') {
       request.response
-        ..write(jsonEncode(result.toList()))
+        //..write(jsonEncode(result.toList()))
+        ..write("kha dai ca 123")
         ..close();
     }
   }
