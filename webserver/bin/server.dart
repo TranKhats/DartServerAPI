@@ -26,7 +26,7 @@ Future main() async {
   };
   var server = await HttpServer.bind(
     InternetAddress.loopbackIPv4,
-    5051,
+    5050,
   );
   print('Listening on localhost:${server.port}');
 
