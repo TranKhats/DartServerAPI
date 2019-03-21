@@ -2,6 +2,15 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 import 'package:mysql1/mysql1.dart';
+import 'AccountModel.dart';
+
+List<Map<String,dynamic>> convertToMapUser(Results result){
+  List<Map<String,dynamic>> users=new List();
+  for (var row in result) {
+    users.add(new AccountModel(row[0], row[1].toString()).toJson());
+  }
+  return users;
+}
 
 Future main() async {
   var settings = new ConnectionSettings(
@@ -14,7 +23,7 @@ Future main() async {
 
   var server = await HttpServer.bind(
     InternetAddress.loopbackIPv4,
-    5050,
+    5051,
   );
   print('Listening on localhost:${server.port}');
 
@@ -26,10 +35,8 @@ Future main() async {
       String sql =
           "select * from user where username='${data['username']}' and password='${data['password']}'";
       var result = await conn.query(sql);
-      //var map = Map<String, dynamic>.from();
-     
       req.response
-        ..write(jsonEncode(result.toList()))
+        ..write(jsonEncode(convertToMapUser(result)))
         ..close();
     }
   }
