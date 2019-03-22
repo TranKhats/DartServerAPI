@@ -13,13 +13,13 @@ List<Map<String,dynamic>> convertToMapUser(Results result){
 }
 
 Future main() async {
-  var settings = new ConnectionSettings(
-      host: '207.148.71.41',
-      port: 3306,
-      user: 'root',
-      password: 'Khoikhats123',
-      db: 'coffemangement');
-  var conn = await MySqlConnection.connect(settings);
+  // var settings = new ConnectionSettings(
+  //     host: '207.148.71.41',
+  //     port: 3306,
+  //     user: 'root',
+  //     password: 'Khoikhats123',
+  //     db: 'coffemangement');
+  // var conn = await MySqlConnection.connect(settings);
 
   var server = await HttpServer.bind(
     InternetAddress.loopbackIPv4,
@@ -34,9 +34,9 @@ Future main() async {
       var data = jsonDecode(content) as Map; /*3*/
       String sql =
           "select * from user where username='${data['username']}' and password='${data['password']}'";
-      var result = await conn.query(sql);
+      //var result = await conn.query(sql);
       req.response
-        ..write(jsonEncode(convertToMapUser(result)))
+        //..write(jsonEncode(convertToMapUser(result)))
         ..close();
     }
   }
