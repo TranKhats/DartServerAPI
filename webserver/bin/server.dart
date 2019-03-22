@@ -23,17 +23,17 @@ Future main() async {
 
   var server = await HttpServer.bind(
     InternetAddress.loopbackIPv4,
-    8989
+    5555
   );
   print('Listening on localhost:${server.port}');
 
   await for (HttpRequest req in server) {
     if (req.method == 'POST' &&
         req.headers.contentType.toString() == 'application/json') {
-      String content = await req.transform(utf8.decoder).join();
-      var data = jsonDecode(content) as Map; /*3*/
-      String sql =
-          "select * from user where username='${data['username']}' and password='${data['password']}'";
+      //String content = await req.transform(utf8.decoder).join();
+      //var data = jsonDecode(content) as Map; /*3*/
+      // String sql =
+      //     "select * from user where username='${data['username']}' and password='${data['password']}'";
       //var result = await conn.query(sql);
       req.response
         //..write(jsonEncode(convertToMapUser(result)))
