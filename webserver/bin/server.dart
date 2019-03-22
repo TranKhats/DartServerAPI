@@ -14,7 +14,7 @@ List<Map<String,dynamic>> convertToMapUser(Results result){
 
 Future main() async {
   var settings = new ConnectionSettings(
-      host: 'localhost',
+      host: '207.148.71.41',
       port: 3306,
       user: 'root',
       password: 'Khoikhats123',
@@ -23,7 +23,7 @@ Future main() async {
 
   var server = await HttpServer.bind(
     InternetAddress.loopbackIPv4,
-    5051,
+    8989
   );
   print('Listening on localhost:${server.port}');
 
